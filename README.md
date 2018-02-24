@@ -7,7 +7,7 @@ The "packer" directory contains scripts and configuration files necessary to pro
 
 1. Build the base ArchLinux VirtualBox image using [Packer](packer.io):
 ```
-$ ./packer.exe build -force arch-template.json
-$ ./vagrant.exe box add output/arch_vagrant_base.box --name archtest5 --force
+$ ./packer.exe build -force arch-base.json
+$ ./vagrant.exe box add output/arch_vagrant_base.box --name arch-base --force
 ```
 2. Edit and provision a particular [Vagrant](https://www.vagrantup.com/) configuration
