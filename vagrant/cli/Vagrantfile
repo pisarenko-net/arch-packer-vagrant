@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "archtest5"
+  config.vm.box = "arch-base"
 
   config.vm.synced_folder 'C:\Users\drsee\UbuntuShared', "/media/sf_UbuntuShared"
   #config.vm.synced_folder "/mnt/c/Users/drsee/UbuntuShared/", "/media/sf_UbuntuShared"
