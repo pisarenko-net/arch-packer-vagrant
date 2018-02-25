@@ -10,6 +10,8 @@ Base image configuration is specified in `packer/arch-base.json`. Useful setting
 2. Country for choosing the Arch mirror
 3. Maximum size of the VM disk
 
+VM-specific configuration is given in `vagrant/xxx/Vagrantfile`. Use `private` folder to bundle secrets, such as SSH keys or license files. See the `Vagrantfile` and corresponding setup scripts for more information.
+
 # Usage
 
 1. Build the base ArchLinux VirtualBox image using [Packer](packer.io):
