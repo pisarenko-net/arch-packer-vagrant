@@ -2,3 +2,4 @@ output*
 packer_cache/
 .vagrant
 private/
+packer.exe
