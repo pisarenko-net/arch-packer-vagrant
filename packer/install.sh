@@ -60,15 +60,16 @@ echo '==> Generating the system configuration script'
 /usr/bin/install --mode=0755 /dev/null "${TARGET_DIR}${CONFIG_SCRIPT}"
 
 cat <<-EOF > "${TARGET_DIR}${CONFIG_SCRIPT}"
-        # GRUB bootloader installation
-        /usr/bin/grub-install --target=x86_64-efi --efi-directory=/boot
-        /usr/bin/grub-mkconfig -o /boot/grub/grub.cfg
-        /usr/bin/mkdir /boot/EFI/BOOT
-        /usr/bin/cp /boot/EFI/arch/grubx64.efi /boot/EFI/BOOT/bootx64.efi
+    # GRUB bootloader installation
+    /usr/bin/grub-install --target=x86_64-efi --efi-directory=/boot
+    /usr/bin/grub-mkconfig -o /boot/grub/grub.cfg
+    /usr/bin/mkdir /boot/EFI/BOOT
+    /usr/bin/cp /boot/EFI/arch/grubx64.efi /boot/EFI/BOOT/bootx64.efi
 
 	echo '${FQDN}' > /etc/hostname
 	/usr/bin/ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 	echo 'KEYMAP=${KEYMAP}' > /etc/vconsole.conf
+	echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 	/usr/bin/sed -i 's/#${LANGUAGE}/${LANGUAGE}/' /etc/locale.gen
 	/usr/bin/locale-gen
 	/usr/bin/usermod --password ${PASSWORD} root
@@ -88,17 +89,17 @@ cat <<-EOF > "${TARGET_DIR}${CONFIG_SCRIPT}"
 	/usr/bin/chown vagrant:vagrant /home/vagrant/.ssh/authorized_keys
 	/usr/bin/chmod 0600 /home/vagrant/.ssh/authorized_keys
 
-        # virtualbox integration
-        /usr/bin/pacman -S --noconfirm virtualbox-guest-utils-nox virtualbox-guest-modules-arch 
-        echo -e 'vboxguest\nvboxsf\nvboxvideo' > /etc/modules-load.d/virtualbox.conf
-        /usr/bin/systemctl enable vboxservice.service
-        /usr/bin/systemctl enable rpcbind.service
-        # Add groups for VirtualBox folder sharing
-        /usr/bin/usermod --append --groups vagrant,vboxsf vagrant
+    # virtualbox integration
+    /usr/bin/pacman -S --noconfirm virtualbox-guest-utils-nox virtualbox-guest-modules-arch 
+    echo -e 'vboxguest\nvboxsf\nvboxvideo' > /etc/modules-load.d/virtualbox.conf
+    /usr/bin/systemctl enable vboxservice.service
+    /usr/bin/systemctl enable rpcbind.service
+    # Add groups for VirtualBox folder sharing
+    /usr/bin/usermod --append --groups vagrant,vboxsf vagrant
 
-        # Clean the pacman cache.
-        /usr/bin/yes | /usr/bin/pacman -Scc
-        /usr/bin/pacman-optimize
+    # Clean the pacman cache.
+    /usr/bin/yes | /usr/bin/pacman -Scc
+    /usr/bin/pacman-optimize
 EOF
 
 echo '==> Entering chroot and configuring system'
