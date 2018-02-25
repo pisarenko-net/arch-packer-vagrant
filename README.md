@@ -11,3 +11,15 @@ $ ./packer.exe build -force arch-base.json
 $ ./vagrant.exe box add output/arch_vagrant_base.box --name arch-base --force
 ```
 2. Edit and provision a particular [Vagrant](https://www.vagrantup.com/) configuration
+
+# Extras
+
+Get rid of VirtualBox menu and status bar:
+```
+VBoxManage setextradata global GUI/Customizations noMenuBar,noStatusBar
+```
+
+To re-enable menu and status bar:
+```
+VBoxManage setextradata global GUI/Customizations MenuBar,StatusBar
+```
