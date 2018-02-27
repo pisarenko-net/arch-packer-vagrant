@@ -1,3 +1,5 @@
+AS="/usr/bin/sudo -u sergey"
+
 # install desktop environment
 echo '==> Installing desktop environment'
 /usr/bin/pacman -S --noconfirm xorg-server xorg-xinit lxdm xfce4
@@ -6,7 +8,6 @@ echo '==> Installing desktop environment'
 echo '==> Intalling virtualbox Xorg modules'
 /usr/bin/pacman -R --noconfirm virtualbox-guest-utils-nox
 /usr/bin/pacman -S --noconfirm virtualbox-guest-utils
-AS="/usr/bin/sudo -u sergey"
 $AS echo "/usr/bin/VBoxClient-all" > /home/sergey/.xinitrc
 
 # configure desktop manager
