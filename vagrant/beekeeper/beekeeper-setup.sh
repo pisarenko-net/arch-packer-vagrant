@@ -28,6 +28,19 @@ $AS /usr/bin/makepkg -si --noconfirm
 cd ..
 /usr/bin/rm -rf android-studio
 
+echo '==> Installing Postman'
+cd /home/sergey
+$AS /usr/bin/git clone https://aur.archlinux.org/ttf-opensans.git
+cd /home/sergey/ttf-opensans
+$AS /usr/bin/makepkg -si --noconfirm
+cd ..
+/usr/bin/rm -rf ttf-opensans
+$AS /usr/bin/git clone https://aur.archlinux.org/postman.git
+cd /home/sergey/postman
+$AS /usr/bin/makepkg -si --noconfirm
+cd ..
+/usr/bin/rm -rf postman
+
 echo '==> Installing Docker'
 /usr/bin/pacman -S --noconfirm docker docker-compose
 /usr/bin/systemctl enable docker.service
