@@ -48,6 +48,11 @@ $AS /usr/bin/makepkg -si --noconfirm
 $AS /usr/bin/cp /usr/share/oh-my-zsh/zshrc /home/sergey/.zshrc
 cd ..
 /usr/bin/rm -rf oh-my-zsh-git
+/usr/bin/touch /home/sergey/.zsh{rc,env}
+/usr/bin/chown sergey:users /home/sergey/.zsh{rc,env}
+/usr/bin/echo 'export HISTFILE="$HOME/.zsh_history"' >> /home/sergey/.zshenv
+/usr/bin/echo 'export HISTSIZE=10000000' >> /home/sergey/.zshenv
+/usr/bin/echo 'export SAVEHIST=10000000' >> /home/sergey/.zshenv
 
 # set-up SSH keys
 echo '==> Configuring SSH keys'

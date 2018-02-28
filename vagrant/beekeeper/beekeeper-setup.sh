@@ -1,8 +1,5 @@
 AS="/usr/bin/sudo -u sergey"
 
-/usr/bin/touch /home/sergey/.zsh{rc,env}
-/usr/bin/chown sergey:users /home/sergey/.zsh{rc,env}
-
 echo '==> Installing and configuring Python'
 /usr/bin/pacman -S --noconfirm python-virtualenv
 
