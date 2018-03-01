@@ -81,3 +81,9 @@ echo '==> Installing custom binaries into /usr/bin/local/'
 /usr/bin/mkdir /usr/bin/local/
 /usr/bin/cp /vagrant/binaries/* /usr/bin/local/
 /usr/bin/chmod +x /usr/bin/local/*
+
+# custom configs
+echo '==> Setting up custom settings'
+cd /home/sergey
+$AS /usr/bin/mkdir .config
+$AS /usr/bin/cp -r /vagrant/configs/mc .config/

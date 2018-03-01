@@ -40,6 +40,9 @@ cd sublime-text-dev
 $AS /usr/bin/makepkg -si --noconfirm
 cd ..
 $AS /usr/bin/rm -rf sublime-text-dev
+/usr/bin/echo 'alias subl="/bin/subl3"' >> /home/sergey/.zshrc
+/usr/bin/echo 'alias mc="EDITOR=/bin/subl3 /bin/mc"' >> /home/sergey/.zshrc
+$AS /usr/bin/cp -r /vagrant/configs/sublime-text-3 .config/
 
 # install Google Chrome
 echo '==> Installing Google Chrome (AUR)'
@@ -52,8 +55,6 @@ $AS /usr/bin/rm -rf google-chrome
 
 # customize XFCE
 echo '==> Customizing XFCE'
-cd /home/sergey
-$AS /usr/bin/mkdir .config
 $AS /usr/bin/cp -r /vagrant/configs/xfce4 .config/
 $AS /usr/bin/cp -r /vagrant/configs/terminator .config/
 $AS /usr/bin/cp -r /vagrant/configs/albert .config/
