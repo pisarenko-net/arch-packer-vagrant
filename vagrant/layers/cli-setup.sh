@@ -8,7 +8,7 @@ echo "==> Refreshing pacman"
 
 # install tools
 echo "==> Installing tools"
-/usr/bin/pacman -S --noconfirm git htop net-tools tcpdump parted netcat tmux hwinfo zsh mc gnupg
+/usr/bin/pacman -S --noconfirm git htop net-tools tcpdump parted netcat tmux hwinfo zsh mc gnupg zip unrar
 
 # set nvim as default editor
 echo "==> Setting default text editor"
@@ -50,6 +50,7 @@ cd ..
 /usr/bin/rm -rf oh-my-zsh-git
 /usr/bin/touch /home/sergey/.zsh{rc,env}
 /usr/bin/chown sergey:users /home/sergey/.zsh{rc,env}
+/usr/bin/echo 'unsetopt share_history' >> /home/sergey/.zshenv
 /usr/bin/echo 'export HISTFILE="$HOME/.zsh_history"' >> /home/sergey/.zshenv
 /usr/bin/echo 'export HISTSIZE=10000000' >> /home/sergey/.zshenv
 /usr/bin/echo 'export SAVEHIST=10000000' >> /home/sergey/.zshenv

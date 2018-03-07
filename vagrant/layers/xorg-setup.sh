@@ -23,6 +23,7 @@ echo '==> Installing fonts'
 # install tools
 echo '==> Installing useful tools'
 /usr/bin/pacman -S --noconfirm terminator meld parcellite thunar-archive-plugin gvfs tk
+$AS /bin/dconf load /org/gnome/meld/ < /tmp/configs/meld
 
 # install albert
 echo '==> Installing albert (AUR)'

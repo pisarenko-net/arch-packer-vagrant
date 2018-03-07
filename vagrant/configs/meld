@@ -1,0 +1,9 @@
+[/]
+indent-width=8
+custom-editor-command='/bin/subl3'
+style-scheme='meld-dark'
+wrap-mode='none'
+use-system-font=false
+insert-spaces-instead-of-tabs=false
+use-system-editor=false
+custom-font='Source Code Pro 12'
