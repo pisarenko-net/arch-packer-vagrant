@@ -15,5 +15,5 @@
     background_type = transparent
     cursor_color = "#aaaaaa"
     scrollback_infinite = True
-    font = Source Code Pro 12
+    font = Source Code Pro 11
     use_system_font = False

@@ -8,7 +8,7 @@ echo "==> Refreshing pacman"
 
 # install tools
 echo "==> Installing tools"
-/usr/bin/pacman -S --noconfirm git htop net-tools tcpdump parted netcat tmux hwinfo zsh mc gnupg zip unrar
+/usr/bin/pacman -S --noconfirm git htop net-tools tcpdump parted netcat tmux hwinfo zsh mc gnupg zip unrar wget
 
 # set nvim as default editor
 echo "==> Setting default text editor"

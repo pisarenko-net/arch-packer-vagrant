@@ -1,7 +1,7 @@
 AS="/usr/bin/sudo -u sergey"
 
 echo '==> Installing and configuring Python'
-/usr/bin/pacman -S --noconfirm python-virtualenv
+/usr/bin/pacman -S --noconfirm python-virtualenv python-pip
 
 echo '==> Installing and configuring Java'
 /usr/bin/pacman -S --noconfirm jdk9-openjdk maven gradle
@@ -41,6 +41,7 @@ cd ..
 echo '==> Installing Docker'
 /usr/bin/pacman -S --noconfirm docker docker-compose
 /usr/bin/systemctl enable docker.service
+/bin/usermod -aG docker sergey
 
 echo '==> Installing kubectl'
 cd /home/sergey
@@ -83,11 +84,24 @@ echo '==> Setting up Beekeeper-specific environment variables'
 /usr/bin/echo 'export COMPOSE_FILE="docker-compose.stack.yml"' >> /home/sergey/.zshenv
 /usr/bin/echo 'export PATH=~/.local/bin:/usr/bin/local:$PATH' >> /home/sergey/.zshenv
 
+echo '==> Copying API access'
+pacman -S --noconfirm openvpn
+pip install tabulate
+$AS /usr/bin/mkdir /home/sergey/.bkpr-ims
+$AS /usr/bin/cp /vagrant/private/api.token /home/sergey/.bkpr-ims
+
 echo '==> Customizing sysctl'
 /usr/bin/echo 'fs.inotify.max_user_watches = 524288' >> /etc/sysctl.d/99-sysctl.conf
 
 echo '==> Setting the wallpaper'
 $AS /usr/bin/cp /vagrant/configs/xfce4-desktop.xml /home/sergey/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+
+echo '==> Checking out code repos'
+cd /home/sergey
+$AS /bin/git clone git@github.com:beekpr/beekeeper-stack.git beekeeper-stack
+$AS /bin/virtualenv -p /bin/python2.7 beekeeper-python
+source beekeeper-python/bin/activate
+$AS /home/sergey/beekeeper-python/bin/pip install jinja2
 
 echo '==> Rebooting!'
 /usr/bin/reboot
