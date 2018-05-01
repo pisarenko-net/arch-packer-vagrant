@@ -4,7 +4,7 @@ echo "==> Enable time sync"
 
 # synchronize package database
 echo "==> Refreshing pacman"
-/usr/bin/pacman -Sy
+/usr/bin/pacman -Syu --noconfirm
 
 # install tools
 echo "==> Installing tools"
@@ -90,3 +90,7 @@ echo '==> Setting up custom settings'
 cd /home/sergey
 $AS /usr/bin/mkdir .config
 $AS /usr/bin/cp -r /tmp/configs/mc .config/
+
+# delete mount.vboxsf binary
+echo '==> Deleting mount.vboxsf binary'
+/usr/bin/rm /usr/bin/mount.vboxsf

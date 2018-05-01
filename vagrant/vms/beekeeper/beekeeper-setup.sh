@@ -4,7 +4,8 @@ echo '==> Installing and configuring Python'
 /usr/bin/pacman -S --noconfirm python-virtualenv python-pip
 
 echo '==> Installing and configuring Java'
-/usr/bin/pacman -S --noconfirm jdk9-openjdk maven gradle
+/usr/bin/pacman -S --noconfirm jdk9-openjdk jdk8-openjdk maven gradle
+/bin/archlinux-java set java-8-openjdk
 
 echo '==> Installing PyCharm'
 cd /home/sergey
