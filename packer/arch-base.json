@@ -1,7 +1,7 @@
 {
     "variables": {
-        "iso_url": "https://pkg.adfinis-sygroup.ch/archlinux/iso/2018.02.01/archlinux-2018.02.01-x86_64.iso",
-        "iso_checksum_url": "https://pkg.adfinis-sygroup.ch/archlinux/iso/2018.02.01/sha1sums.txt",
+        "iso_url": "https://archlinux.nullpointer.io/iso/2018.05.01/archlinux-2018.05.01-x86_64.iso",
+        "iso_checksum_url": "https://archlinux.nullpointer.io/iso/2018.05.01/sha1sums.txt",
         "iso_checksum_type": "sha1",
         "ssh_timeout": "20m",
         "country": "DE",

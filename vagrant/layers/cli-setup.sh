@@ -90,7 +90,5 @@ echo '==> Setting up custom settings'
 cd /home/sergey
 $AS /usr/bin/mkdir .config
 $AS /usr/bin/cp -r /tmp/configs/mc .config/
-
-# delete mount.vboxsf binary
-echo '==> Deleting mount.vboxsf binary'
-/usr/bin/rm /usr/bin/mount.vboxsf
+$AS /usr/bin/mkdir .config/nvim
+$AS /usr/bin/cp -r /tmp/configs/nvim .config/nvim/init.vim

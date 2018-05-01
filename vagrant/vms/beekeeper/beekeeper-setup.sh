@@ -93,6 +93,7 @@ $AS /usr/bin/cp /vagrant/private/api.token /home/sergey/.bkpr-ims
 
 echo '==> Customizing sysctl'
 /usr/bin/echo 'fs.inotify.max_user_watches = 524288' >> /etc/sysctl.d/99-sysctl.conf
+/usr/bin/echo 'vm.max_map_count = 262144' >> /etc/sysctl.d/99-sysctl.conf
 
 echo '==> Setting the wallpaper'
 $AS /usr/bin/cp /vagrant/configs/xfce4-desktop.xml /home/sergey/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
