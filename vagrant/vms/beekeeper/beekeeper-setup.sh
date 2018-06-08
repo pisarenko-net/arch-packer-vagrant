@@ -1,5 +1,8 @@
 AS="/usr/bin/sudo -u sergey"
 
+echo '==> Installing CLI tools'
+/usr/bin/pacman -S --noconfirm jq
+
 echo '==> Installing and configuring Python'
 /usr/bin/pacman -S --noconfirm python-virtualenv python-pip
 
@@ -26,6 +29,14 @@ $AS /usr/bin/makepkg -si --noconfirm
 cd ..
 /usr/bin/rm -rf android-studio
 
+echo '==> Installing wrk (load balance tool)'
+cd /home/sergey
+$AS /usr/bin/git clone https://aur.archlinux.org/wrk.git
+cd /home/sergey/wrk
+$AS /usr/bin/makepkg -si --noconfirm
+cd ..
+/usr/bin/rm -rf wrk
+
 echo '==> Installing Postman'
 cd /home/sergey
 $AS /usr/bin/git clone https://aur.archlinux.org/ttf-opensans.git
@@ -46,11 +57,9 @@ echo '==> Installing Docker'
 
 echo '==> Installing kubectl'
 cd /home/sergey
-$AS /usr/bin/git clone https://aur.archlinux.org/kubectl-bin.git
-cd /home/sergey/kubectl-bin
-$AS /usr/bin/makepkg -si --noconfirm
-cd ..
-/usr/bin/rm -rf kubectl-bin
+/bin/curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.5.8/bin/linux/amd64/kubectl
+/bin/chmod +x kubectl
+/bin/mv kubectl /bin
 
 echo '==> Configuring AWS'
 /usr/bin/pacman -S --noconfirm aws-cli

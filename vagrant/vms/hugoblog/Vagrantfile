@@ -21,6 +21,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.hostname = "hugoblog.bethania"
 
+  config.vm.define "hugoblog"
+
   config.vm.synced_folder 'C:\Users\drsee\UbuntuShared', "/shared"
 
   # Disable automatic box update checking. If you disable this, then

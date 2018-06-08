@@ -17,11 +17,11 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "arch-base"
+  config.vm.box = "arch-base-2018-06-01"
 
-  config.vm.hostname = "clibox.bethania"
+  config.vm.hostname = "druid.bethania"
 
-  config.vm.define "box_unique_name"
+  config.vm.define "druid_testing"
 
   config.vm.synced_folder 'C:\Users\drsee\UbuntuShared', "/shared"
 
@@ -41,9 +41,7 @@ Vagrant.configure("2") do |config|
   # via 127.0.0.1 to disable public access
   # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 
-  # Create a private network, which allows host-only access to the machine
-  # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "private_network", ip: "192.168.56.102"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -55,13 +53,13 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "ArchLinux CLI Example 18.02"
+    vb.name = "Druid Testing 18.06"
 
     # Display the VirtualBox GUI when booting the machine
     vb.gui = true
  
     # Customize the amount of memory on the VM:
-    vb.memory = "2048"
+    vb.memory = "8192"
 
     # EFI boot
     vb.customize ["modifyvm", :id, "--firmware", "efi64"]
@@ -69,7 +67,15 @@ Vagrant.configure("2") do |config|
     # disable audio
     vb.customize ["modifyvm", :id, "--audio", "none"]
 
-    # allow 6 cores
+    # better video
+    vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+    vb.customize ["modifyvm", :id, "--vram", "128"]
+
+    # integration with desktop
+    vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+    #vb.customize ["modifyvm", :id, "--draganddrop", "bidirectional"]
+
+    # allow 3 cores
     vb.customize ["modifyvm", :id, "--cpus", "6"]
 
     # full USB3
@@ -80,5 +86,11 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "file", source: "../../configs", destination: "/tmp/configs"
 
+  config.vm.provision "file", source: "../../wallpapers", destination: "/tmp/wallpapers"
+
   config.vm.provision "shell", path: "../../layers/cli-setup.sh", env: variables
+
+  config.vm.provision "shell", path: "../../layers/xorg-setup.sh", env: variables
+
+  config.vm.provision "shell", path: "setup.sh", env: variables
 end

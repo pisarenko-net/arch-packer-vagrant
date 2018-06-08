@@ -21,6 +21,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.hostname = "beekeeper.bethania"
 
+  config.vm.define "beekeeper"
+
   config.vm.synced_folder 'C:\Users\drsee\UbuntuShared', "/shared"
 
   # Disable automatic box update checking. If you disable this, then

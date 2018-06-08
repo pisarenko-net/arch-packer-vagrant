@@ -93,13 +93,11 @@ cat <<-EOF > "${TARGET_DIR}${CONFIG_SCRIPT}"
     /usr/bin/pacman -S --noconfirm virtualbox-guest-utils-nox virtualbox-guest-modules-arch 
     echo -e 'vboxguest\nvboxsf\nvboxvideo' > /etc/modules-load.d/virtualbox.conf
     /usr/bin/systemctl enable vboxservice.service
-    /usr/bin/systemctl enable rpcbind.service
     # Add groups for VirtualBox folder sharing
     /usr/bin/usermod --append --groups vagrant,vboxsf vagrant
 
     # Clean the pacman cache.
     /usr/bin/yes | /usr/bin/pacman -Scc
-    /usr/bin/pacman-optimize
 EOF
 
 echo '==> Entering chroot and configuring system'
