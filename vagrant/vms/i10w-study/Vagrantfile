@@ -17,11 +17,11 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "arch-base-2018-06-01"
+  config.vm.box = "arch-base-2018-08-01"
 
-  config.vm.hostname = "druid.bethania"
+  config.vm.define "i10w-study"
 
-  config.vm.define "druid_testing"
+  config.vm.hostname = "i10wstudy.bethania"
 
   config.vm.synced_folder 'C:\Users\drsee\UbuntuShared', "/shared"
 
@@ -53,7 +53,7 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "Druid Testing 18.06"
+    vb.name = "i10w Study 18.08"
 
     # Display the VirtualBox GUI when booting the machine
     vb.gui = true
@@ -82,9 +82,6 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--usb", "on"]
     vb.customize ["modifyvm", :id, "--usbehci", "on"]
     vb.customize ["modifyvm", :id, "--usbxhci", "on"]
-
-    # optical drive to load guest additions
-    vb.customize ["storageattach", :id, "--storagectl", "IDE", "--port", "0", "--device", "1",  "--type", "dvddrive", "--medium", "emptydrive"] 
   end
 
   config.vm.provision "file", source: "../../configs", destination: "/tmp/configs"

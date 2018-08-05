@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "arch-base"
+  config.vm.box = "arch-base-2018-08-01"
 
   config.vm.hostname = "beekeeper.bethania"
 
@@ -50,7 +50,7 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "Beekeeper 18.02"
+    vb.name = "Beekeeper 18.08"
 
     # Display the VirtualBox GUI when booting the machine
     vb.gui = true

@@ -7,14 +7,9 @@ echo '==> Installing Docker'
 
 echo '==> Installing JDK'
 /usr/bin/pacman -S --noconfirm java-8-openjdk
-/bin/archlinux-java set java-8-openjdk
 
 echo '==> Installing IntelliJ IDEA'
 /usr/bin/pacman -S --noconfirm intellij-idea-community-edition
-
-# delete mount.vboxsf binary
-echo '==> Deleting mount.vboxsf binary'
-/usr/bin/rm /usr/bin/mount.vboxsf
 
 # Reboot!
 echo '==> Rebooting!'

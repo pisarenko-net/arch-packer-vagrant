@@ -17,7 +17,7 @@ VM-specific configuration is given in `vagrant/xxx/Vagrantfile`. Use `private` f
 1. Build the base ArchLinux VirtualBox image using [Packer](packer.io):
 ```
 $ ./packer.exe build -force arch-base.json
-$ ./vagrant.exe box add output/arch_vagrant_base.box --name arch-base --force
+$ ./vagrant.exe box add output/arch_vagrant_base.box --name arch-base-YYYY-MM-DD --force  ## force is needed only when replacing
 ```
 2. Edit and provision a particular [Vagrant](https://www.vagrantup.com/) configuration
 

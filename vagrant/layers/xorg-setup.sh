@@ -5,9 +5,9 @@ echo '==> Installing desktop environment'
 /usr/bin/pacman -S --noconfirm xorg-server xorg-xinit lxdm xfce4
 
 # install virtualbox modules for X
-echo '==> Intalling virtualbox Xorg modules'
+echo '==> Removing virtualbox guest utils so that plugin installs it later'
 /usr/bin/pacman -R --noconfirm virtualbox-guest-utils-nox
-/usr/bin/pacman -S --noconfirm virtualbox-guest-utils
+#/usr/bin/pacman -S --noconfirm virtualbox-guest-utils
 $AS echo "/usr/bin/VBoxClient-all" > /home/sergey/.xinitrc
 
 # configure desktop manager
