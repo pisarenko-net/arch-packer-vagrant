@@ -3,6 +3,9 @@ AS="/usr/bin/sudo -u sergey"
 echo '==> Installing CLI tools'
 /usr/bin/pacman -S --noconfirm jq
 
+echo '==> Installing misc libraries'
+/usr/bin/pacman -S --noconfirm libmariadbclient
+
 echo '==> Installing and configuring Python'
 /usr/bin/pacman -S --noconfirm python-virtualenv python-pip
 
@@ -11,15 +14,12 @@ echo '==> Installing and configuring Java'
 /bin/archlinux-java set java-8-openjdk
 
 echo '==> Installing PyCharm'
-cd /home/sergey
-$AS /usr/bin/git clone https://aur.archlinux.org/pycharm-professional.git
-cd /home/sergey/pycharm-professional
-$AS /usr/bin/makepkg -si --noconfirm
-cd ..
-/usr/bin/rm -rf pycharm-professional
+/usr/bin/pacman -S --noconfirm pycharm-community-edition
+$AS /usr/bin/cp /vagrant/configs/intellij/pycharm-settings.jar /home/sergey/
 
 echo '==> Installing IntelliJ IDEA'
 /usr/bin/pacman -S --noconfirm intellij-idea-community-edition
+$AS /usr/bin/cp /vagrant/configs/intellij/idea-settings.jar /home/sergey/
 
 echo '==> Installing Android Studio'
 cd /home/sergey
@@ -109,6 +109,7 @@ $AS /usr/bin/cp /vagrant/configs/xfce4-desktop.xml /home/sergey/.config/xfce4/xf
 
 echo '==> Checking out code repos'
 cd /home/sergey
+/usr/bin/pacman -S python2-pip
 $AS /bin/git clone git@github.com:beekpr/beekeeper-stack.git beekeeper-stack
 $AS /bin/virtualenv -p /bin/python2.7 beekeeper-python
 source beekeeper-python/bin/activate
