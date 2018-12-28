@@ -10,6 +10,7 @@ echo '==> Installing IntelliJ IDEA'
 echo '==> Checking out code repos'
 cd /home/sergey
 $AS /bin/git clone git@github.com:pisarenko-net/i10w-study.git github-repo
+$AS /bin/git clone https://github.com/drseergio/practice.git previous-study
 
 # Reboot!
 echo '==> Rebooting!'

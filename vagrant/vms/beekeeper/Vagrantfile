@@ -17,13 +17,13 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "arch-base-2018-11-01"
+  config.vm.box = "arch-base-2018-12-01"
 
   config.vm.hostname = "beekeeper.bethania"
 
   config.vm.define "beekeeper"
 
-  config.vm.synced_folder 'C:\Users\drsee\UbuntuShared', "/shared"
+  config.vm.synced_folder 'C:\Users\drsee\VirtualShared', "/shared"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -50,13 +50,13 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "Beekeeper 18.11"
+    vb.name = "Beekeeper 18.12"
 
     # Display the VirtualBox GUI when booting the machine
     vb.gui = true
  
     # Customize the amount of memory on the VM:
-    vb.memory = "32768"
+    vb.memory = "12288"
 
     # EFI boot
     vb.customize ["modifyvm", :id, "--firmware", "efi64"]

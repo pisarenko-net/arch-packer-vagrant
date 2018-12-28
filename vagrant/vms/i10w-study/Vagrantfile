@@ -17,13 +17,13 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "arch-base-2018-08-01"
+  config.vm.box = "arch-base-2018-12-01"
 
   config.vm.define "i10w-study"
 
   config.vm.hostname = "i10wstudy.bethania"
 
-  config.vm.synced_folder 'C:\Users\drsee\UbuntuShared', "/shared"
+  config.vm.synced_folder 'C:\Users\drsee\VirtualShared', "/shared"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -53,7 +53,7 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "i10w Study 18.08"
+    vb.name = "i10w Study 18.12"
 
     # Display the VirtualBox GUI when booting the machine
     vb.gui = true
