@@ -11,7 +11,7 @@
 [plugins]
 [profiles]
   [[default]]
-    background_darkness = 0.7
+    background_darkness = 0.85
     background_type = transparent
     cursor_color = "#aaaaaa"
     scrollback_infinite = True
