@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "arch-base-2018-12-01"
+  config.vm.box = "arch-base-2019-06-01"
 
   config.vm.hostname = "hugoblog.bethania"
 
@@ -57,7 +57,7 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "Hugoblog 18.12"
+    vb.name = "Hugoblog 19.06"
 
     # Display the VirtualBox GUI when booting the machine
     vb.gui = true
