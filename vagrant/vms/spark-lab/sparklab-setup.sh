@@ -7,7 +7,7 @@ echo '==> Allow home network passwordless login'
 echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2IGnU5uS1K0F2f0IE4p4hGGNNP0PGtIy6g/+SKpy8JN6X6H7TAZZ3jQA+2znVJtqX308OxG5V3BmUZtAaEa/DbfTITlY/b+wGt835Rw1S7BO51WH+TpD5orEx/TwSAHpedNgNh4YlDMHCILIEbWq7JBk+weJx6Ui3Tfj+ipHaQ1+JZwldzyxBqJlUp0MMNQiiFgfp3zftjIE76+Kb5mbomkxzZYi2ShVBBCP5jofGsaYLuL1kWWazj3ylNUBFOXdzulibPBRKS8zkUezOl+Rl9V2wokaQc4IxOmI1FOGVW3v4VmdbLwx5UFaMhyOPnDD0JaZSlokHHlSmcNghFImh drseergio@alabama' >> /home/sergey/.ssh/authorized_keys
 
 echo '==> Installing Java'
-/usr/bin/pacman -S --noconfirm jdk-openjdk
+/usr/bin/pacman -S --noconfirm jdk8-openjdk
 
 echo '==> Installing Scala'
 /usr/bin/pacman -S --noconfirm scala
