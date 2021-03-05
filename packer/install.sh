@@ -44,7 +44,7 @@ echo "==> Mounting ${BOOT_PARTITION} to ${TARGET_DIR}/boot"
 /usr/bin/mount ${BOOT_PARTITION} ${TARGET_DIR}/boot
 
 echo "==> Setting local mirror"
-curl -s "$MIRRORLIST" |  sed 's/^#Server/Server/' > /etc/pacman.d/mirrorlist
+curl -L -s "$MIRRORLIST" |  sed 's/^#Server/Server/' > /etc/pacman.d/mirrorlist
 
 echo '==> Bootstrapping the base installation'
 /usr/bin/pacstrap ${TARGET_DIR} base base-devel btrfs-progs neovim openssh grub efibootmgr net-tools
