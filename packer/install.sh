@@ -47,7 +47,7 @@ echo "==> Setting local mirror"
 curl -L -s "$MIRRORLIST" |  sed 's/^#Server/Server/' > /etc/pacman.d/mirrorlist
 
 echo '==> Bootstrapping the base installation'
-/usr/bin/pacstrap ${TARGET_DIR} base base-devel btrfs-progs neovim openssh grub efibootmgr net-tools
+/usr/bin/pacstrap ${TARGET_DIR} base base-devel lvm2 linux linux-firmware btrfs-progs netctl neovim dhcpcd openssh grub-efi-x86_64 efibootmgr net-tools intel-ucode wget git
 
 echo '==> Generating the filesystem table'
 /usr/bin/genfstab -U ${TARGET_DIR} >> "${TARGET_DIR}/etc/fstab"
@@ -60,44 +60,38 @@ echo '==> Generating the system configuration script'
 /usr/bin/install --mode=0755 /dev/null "${TARGET_DIR}${CONFIG_SCRIPT}"
 
 cat <<-EOF > "${TARGET_DIR}${CONFIG_SCRIPT}"
-    # GRUB bootloader installation
-    /usr/bin/grub-install --target=x86_64-efi --efi-directory=/boot
-    /usr/bin/grub-mkconfig -o /boot/grub/grub.cfg
-    /usr/bin/mkdir /boot/EFI/BOOT
-    /usr/bin/cp /boot/EFI/arch/grubx64.efi /boot/EFI/BOOT/bootx64.efi
+# GRUB bootloader installation
+/usr/bin/grub-install --target=x86_64-efi --efi-directory=/boot
+/usr/bin/grub-mkconfig -o /boot/grub/grub.cfg
+/usr/bin/mkdir /boot/EFI/BOOT
+/usr/bin/cp /boot/EFI/arch/grubx64.efi /boot/EFI/BOOT/bootx64.efi
 
-	echo '${FQDN}' > /etc/hostname
-	/usr/bin/ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
-	echo 'KEYMAP=${KEYMAP}' > /etc/vconsole.conf
-	echo 'LANG=en_US.UTF-8' > /etc/locale.conf
-	/usr/bin/sed -i 's/#${LANGUAGE}/${LANGUAGE}/' /etc/locale.gen
-	/usr/bin/locale-gen
-	/usr/bin/usermod --password ${PASSWORD} root
-	# https://wiki.archlinux.org/index.php/Network_Configuration#Device_names
-	/usr/bin/ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
-	/usr/bin/ln -s '/usr/lib/systemd/system/dhcpcd@.service' '/etc/systemd/system/multi-user.target.wants/dhcpcd@eth0.service'
-	/usr/bin/sed -i 's/#UseDNS yes/UseDNS no/' /etc/ssh/sshd_config
-	/usr/bin/systemctl enable sshd.service
+echo '${FQDN}' > /etc/hostname
+/usr/bin/ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
+echo 'KEYMAP=${KEYMAP}' > /etc/vconsole.conf
+echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+/usr/bin/sed -i 's/#${LANGUAGE}/${LANGUAGE}/' /etc/locale.gen
+/usr/bin/locale-gen
+/usr/bin/usermod --password ${PASSWORD} root
+# https://wiki.archlinux.org/index.php/Network_Configuration#Device_names
+/usr/bin/ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
+/usr/bin/ln -s '/usr/lib/systemd/system/dhcpcd@.service' '/etc/systemd/system/multi-user.target.wants/dhcpcd@eth0.service'
+/usr/bin/sed -i 's/#UseDNS yes/UseDNS no/' /etc/ssh/sshd_config
+/usr/bin/systemctl enable sshd.service
 
-	# Vagrant-specific configuration
-	/usr/bin/useradd --password ${PASSWORD} --comment 'Vagrant User' --create-home --user-group vagrant
-	echo 'Defaults env_keep += "SSH_AUTH_SOCK"' > /etc/sudoers.d/10_vagrant
-	echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/10_vagrant
-	/usr/bin/chmod 0440 /etc/sudoers.d/10_vagrant
-	/usr/bin/install --directory --owner=vagrant --group=vagrant --mode=0700 /home/vagrant/.ssh
-	/usr/bin/curl --output /home/vagrant/.ssh/authorized_keys --location https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub
-	/usr/bin/chown vagrant:vagrant /home/vagrant/.ssh/authorized_keys
-	/usr/bin/chmod 0600 /home/vagrant/.ssh/authorized_keys
+# Vagrant-specific configuration
+/usr/bin/useradd --password ${PASSWORD} --comment 'Vagrant User' --create-home --user-group vagrant
+echo 'Defaults env_keep += "SSH_AUTH_SOCK"' > /etc/sudoers.d/10_vagrant
+echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/10_vagrant
+/usr/bin/chmod 0440 /etc/sudoers.d/10_vagrant
+/usr/bin/install --directory --owner=vagrant --group=vagrant --mode=0700 /home/vagrant/.ssh
+/usr/bin/curl --output /home/vagrant/.ssh/authorized_keys --location https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub
+/usr/bin/chown vagrant:vagrant /home/vagrant/.ssh/authorized_keys
+/usr/bin/chmod 0600 /home/vagrant/.ssh/authorized_keys
 
-    # virtualbox integration
-    /usr/bin/pacman -S --noconfirm virtualbox-guest-utils-nox virtualbox-guest-modules-arch 
-    echo -e 'vboxguest\nvboxsf\nvboxvideo' > /etc/modules-load.d/virtualbox.conf
-    /usr/bin/systemctl enable vboxservice.service
-    # Add groups for VirtualBox folder sharing
-    /usr/bin/usermod --append --groups vagrant,vboxsf vagrant
 
-    # Clean the pacman cache.
-    /usr/bin/yes | /usr/bin/pacman -Scc
+# Clean the pacman cache.
+/usr/bin/yes | /usr/bin/pacman -Scc
 EOF
 
 echo '==> Entering chroot and configuring system'
