@@ -46,8 +46,8 @@
     "disk": "204800",
     "headless": "true",
     "iso_checksum_type": "sha1",
-    "iso_checksum_url": "https://mirror.puzzle.ch/archlinux/iso/2021.03.01/sha1sums.txt",
-    "iso_url": "https://mirror.puzzle.ch/archlinux/iso/2021.03.01/archlinux-2021.03.01-x86_64.iso",
+    "iso_checksum_url": "https://mirror.puzzle.ch/archlinux/iso/2021.04.01/sha1sums.txt",
+    "iso_url": "https://mirror.puzzle.ch/archlinux/iso/2021.04.01/archlinux-2021.04.01-x86_64.iso",
     "ssh_timeout": "20m"
   }
 }
