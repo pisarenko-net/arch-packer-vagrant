@@ -1,4 +1,7 @@
-# arch-packer-vagrant
+# (DEPRECATED) arch-packer-vagrant
+
+**DEPRECATED**: [Superceded by arch-bootstrapper](https://github.com/pisarenko-net/arch-bootstrapper/blob/main/README.md)
+
 Collection of configurations to build and provision functional Virtualbox images
 
 The "packer" directory contains scripts and configuration files necessary to produce base ArchLinux image. The "vagrant" directory contains scripts and configuration files to produce complete preconfigured and usable VMs.
